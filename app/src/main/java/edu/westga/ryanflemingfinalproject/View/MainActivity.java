@@ -8,8 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import edu.westga.ryanflemingfinalproject.Controller.DBController;
 
 public class MainActivity extends AppCompatActivity {
+
+    private DBController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        this.controller = new DBController(this);
+        this.loadScreen();
+
+
     }
 
     @Override
@@ -48,5 +60,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loadScreen() {
+        LinearLayout main = (LinearLayout) this.findViewById(R.id.mainLayout);
+
+        if (this.controller.getUserName() == null) {
+            TextView addText = new TextView(this);
+            addText.setText("Enter Username: ");
+            EditText etxUser = new EditText(this);
+            Button btnSubmit = new Button(this);
+            btnSubmit.setText("Submit");
+
+            main.addView(addText);
+            main.addView(etxUser);
+            main.addView(btnSubmit);
+        } else {
+            TextView txvWelcome = new TextView(this);
+            txvWelcome.setText("Welcome" + controller.getUserName());
+
+
+        }
     }
 }

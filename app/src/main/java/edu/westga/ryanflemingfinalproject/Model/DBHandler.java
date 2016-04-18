@@ -1,8 +1,12 @@
 package edu.westga.ryanflemingfinalproject.Model;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.sql.SQLInput;
 
 /**
  * Class for working with the SQLite database.
@@ -49,11 +53,10 @@ public class DBHandler extends SQLiteOpenHelper {
                     COLUMN_ID + " INTEGER PRIMARY KEY, " +
                     COLUMN_STARTTIME + " TEXT, " +
                     COLUMN_ENDTIME + " TEXT, " +
-                    COLUMN_TIMEWORKED + " TEXT";
+                    COLUMN_TIMEWORKED + " TEXT)";
         db.execSQL(createUserTable);
         db.execSQL(createWageTable);
         db.execSQL(createTimeLogTable);
-
     }
 
     @Override
@@ -62,5 +65,26 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WAGE);
         this.onCreate(db);
+    }
+
+    public void insertUserName(String userName) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USERNAME, userName);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_USER, null, values);
+    }
+
+    public String getUserName() {
+        String query = "SELECT " + COLUMN_USERNAME + " FROM " + TABLE_USER;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String userName = null;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            userName = cursor.getString(0);
+            cursor.close();
+        }
+        db.close();
+        return userName;
     }
 }
