@@ -22,6 +22,10 @@ android {
             java.srcDirs = ['src/main/java', 'src/main/java/edu.westga.ryanflemingfinalproject/Model']
         }
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {

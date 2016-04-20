@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="button_submit_user_name" type="id">btnSubmitUserName</item>
+    <item name="add_text_view" type="id">addText</item>
+    <item name="add_user_text_edit" type="id">addUserTextEdit</item>
+</resources>
