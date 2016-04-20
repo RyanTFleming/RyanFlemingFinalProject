@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">RyanFlemingFinalProject</string>
     <string name="action_settings">Settings</string>
+    <string name="button_expense">Add Expense</string>
+    <string name="button_goal">Add Goal</string>
+    <string name="button_calculate">Calculate</string>
 </resources>
