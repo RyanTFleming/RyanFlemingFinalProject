@@ -18,6 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".View.AddExpenseActivity"
+            android:label="@string/title_activity_add_expense"
+            android:parentActivityName=".View.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.westga.ryanflemingfinalproject.View.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

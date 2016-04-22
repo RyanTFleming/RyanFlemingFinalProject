@@ -4,4 +4,9 @@
     <string name="button_expense">Add Expense</string>
     <string name="button_goal">Add Goal</string>
     <string name="button_calculate">Calculate</string>
+    <string name="title_activity_add_expense">AddExpenseActivity</string>
+    <string name="add_expense_value">Value</string>
+    <string name="add_expense_name">Name</string>
+    <string name="add_expense_title">Add A New Expense</string>
+    <string name="add_string">Add</string>
 </resources>

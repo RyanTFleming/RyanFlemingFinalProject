@@ -1,5 +1,6 @@
 package edu.westga.ryanflemingfinalproject;
 
+import android.content.Intent;
 import android.inputmethodservice.Keyboard;
 import android.os.SystemClock;
 import android.test.ActivityInstrumentationTestCase2;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.test.TouchUtils;
 import android.widget.EditText;
 
+import edu.westga.ryanflemingfinalproject.View.AddExpenseActivity;
 import edu.westga.ryanflemingfinalproject.View.MainActivity;
 
 /**
@@ -57,8 +59,9 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         EditText addUserName = (EditText) activity.findViewById(R.id.add_user_text_edit);
         this.getFocus(addUserName);
         this.getInstrumentation().sendStringSync("T");
+        SystemClock.sleep(500);
         this.getInstrumentation().sendCharacterSync(KeyEvent.KEYCODE_DEL);
-
+        SystemClock.sleep(500);
         assertFalse(button.isEnabled());
     }
 
@@ -77,4 +80,5 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         getInstrumentation().waitForIdleSync();
         SystemClock.sleep(500);
     }
+
 }

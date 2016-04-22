@@ -12,10 +12,11 @@ import edu.westga.ryanflemingfinalproject.Model.DBHandler;
  */
 public class DBController {
 
+    public static final String DATABASE_NAME = "KeepTheChangeDB.db";
     private DBHandler handler;
 
-    public DBController(Context context) {
-        this.handler = new DBHandler(context, null, null, 1);
+    public DBController(Context context, String name) {
+        this.handler = new DBHandler(context, name, null, 1);
     }
 
 
@@ -25,6 +26,10 @@ public class DBController {
 
     public String getUserName() {
         return this.handler.getUserName();
+    }
+
+    public boolean insertExpense(String name, double user) {
+        return this.handler.insertExpense(name, user);
     }
 
 }

@@ -1,6 +1,7 @@
 package edu.westga.ryanflemingfinalproject.View;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import edu.westga.ryanflemingfinalproject.Controller.DBController;
+import edu.westga.ryanflemingfinalproject.Model.DBHandler;
 import edu.westga.ryanflemingfinalproject.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         this.mainActivityLayout = (LinearLayout) this.findViewById(R.id.mainLayout);
-        this.controller = new DBController(this);
+        this.controller = new DBController(this, this.controller.DATABASE_NAME);
         this.loadScreen();
     }
 
@@ -132,12 +134,20 @@ public class MainActivity extends AppCompatActivity {
         txvWelcome.setText("Welcome, " + this.controller.getUserName());
         Button btnAddExpense = new Button(this);
         btnAddExpense.setText(R.string.button_expense);
+        btnAddExpense.setId(R.id.btnAddExpense);
+        btnAddExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startExpenseActivity();
+            }
+        });
+
 
         Button btnAddGoal = new Button(this);
         btnAddGoal.setText(R.string.button_goal);
 
         Button btnCalculate = new Button(this);
-        btnCalculate.setText(R.string.button_expense);
+        btnCalculate.setText(R.string.button_calculate);
 
         txvWelcome.setGravity(Gravity.CENTER_HORIZONTAL);
         txvWelcome.setPadding(0, 300, 0, 15);
@@ -147,5 +157,10 @@ public class MainActivity extends AppCompatActivity {
         this.mainActivityLayout.addView(btnAddExpense);
         this.mainActivityLayout.addView(btnAddGoal);
         this.mainActivityLayout.addView(btnCalculate);
+    }
+
+    private void startExpenseActivity() {
+        Intent intent = new Intent(this, AddExpenseActivity.class);
+        this.startActivity(intent);
     }
 }
