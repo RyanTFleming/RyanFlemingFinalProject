@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.sql.SQLInput;
+import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
+import java.util.List;
 
 /**
  * Class for working with the SQLite database.
@@ -45,7 +47,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 TABLE_USER + "(" +
                     COLUMN_ID + " INTEGER PRIMARY KEY, " +
                     COLUMN_USERNAME + " TEXT)";
-        String createWageTable = "CREATE TABLE " +
+        String createGoalsTable = "CREATE TABLE " +
                 TABLE_GOAL + "(" +
                     COLUMN_ID + " INTEGER PRIMARY KEY, " +
                     COLUMN_GOAL_NAME + " TEXT, " +
@@ -56,7 +58,7 @@ public class DBHandler extends SQLiteOpenHelper {
                     COLUMN_NAME + " TEXT, " +
                     COLUMN_VALUE + " REAL)";
         db.execSQL(createUserTable);
-        db.execSQL(createWageTable);
+        db.execSQL(createGoalsTable);
         db.execSQL(createExpenseTable);
     }
 
@@ -89,6 +91,27 @@ public class DBHandler extends SQLiteOpenHelper {
         return userName;
     }
 
+    /**
+     * Gets the list off all the goal names from the database and returns
+     * them as a string array
+     * @return goals - the arraylist of goals
+     */
+    public ArrayList<String> getGoals() {
+        String query = "SELECT " + COLUMN_GOAL_NAME + " FROM " + TABLE_GOAL;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<String> goals = new ArrayList<>();
+        Cursor cursor = db.rawQuery(query, null);
+        int index;
+        if (cursor != null) {
+            cursor.moveToFirst();
+            for  (index = 0; index < cursor.getCount(); index++ ) {
+                goals.add(cursor.getString(0));
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return goals;
+    }
     public boolean insertExpense(String name, double value) {
         if (name == null) {
             throw new IllegalArgumentException("You must have a way to identify the expense");
@@ -113,8 +136,8 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, name);
-        values.put(COLUMN_VALUE, value);
+        values.put(COLUMN_GOAL_NAME, name);
+        values.put(COLUMN_GOAL_VALUE, value);
         SQLiteDatabase db = this.getWritableDatabase();
         long rowID = db.insert(TABLE_GOAL, null, values);
 

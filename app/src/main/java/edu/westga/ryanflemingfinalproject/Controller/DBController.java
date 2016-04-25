@@ -2,6 +2,8 @@ package edu.westga.ryanflemingfinalproject.Controller;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+
 import edu.westga.ryanflemingfinalproject.Model.DBHandler;
 
 /**
@@ -35,6 +37,11 @@ public class DBController {
     public boolean insertGoal(String name, double user) {
         return this.handler.insertGoal(name, user);
     }
+
+    public ArrayList<String> getGoals() {
+        return this.handler.getGoals();
+    }
+
 
 
 

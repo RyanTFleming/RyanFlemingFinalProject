@@ -61,11 +61,19 @@ public class AddGoalActivity extends AppCompatActivity {
             if (success) {
                 Toast toast = Toast.makeText(this, "Goal successfully added", Toast.LENGTH_LONG);
                 toast.show();
+                this.valueEditText.setText("");
+                this.nameEditText.setText("");
+
+            } else {
+                Toast toast = Toast.makeText(this, "Failed to add goal", Toast.LENGTH_LONG);
+                toast.show();
             }
 
         } catch (NumberFormatException nfe) {
             Toast toast = Toast.makeText(this, "Cost must be a valid number", Toast.LENGTH_LONG);
             toast.show();
+        } catch (Exception ex) {
+            //TODO
         }
     }
 

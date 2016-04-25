@@ -12,66 +12,107 @@
     tools:context="edu.westga.ryanflemingfinalproject.View.CalculatorActivity"
     tools:showIn="@layout/activity_calculator">
 
-    <Spinner
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:spinnerMode="dropdown"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hourly Wage"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/spinner"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hours Worked Per Week"
-        android:id="@+id/textView5"
-        android:layout_below="@+id/spinner2"
-        android:layout_centerHorizontal="true" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner3"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/textView5"
+        android:id="@+id/linearLayout2"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true">
 
-    <TextView
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="214dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Hourly Wage"
+            android:id="@+id/textView4"
+            android:layout_below="@+id/wageSpinner"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="left" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/wageSpinner"
+            android:spinnerMode="dropdown"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Goal"
-        android:id="@+id/textView6"
-        android:layout_below="@+id/spinner3"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/linearLayout"
+        android:layout_above="@+id/linearLayout3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="28dp">
+
+        <TextView
+            android:layout_width="210dp"
+            android:layout_height="70dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Hours/Week"
+            android:id="@+id/textView5"
+            android:layout_below="@+id/hoursSpinner"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="left" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hoursSpinner"
+            android:layout_marginTop="21dp"
+            android:layout_below="@+id/textView4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:spinnerMode="dropdown"
+            android:layout_gravity="left|right" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout3"
+        android:layout_above="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:layout_width="216dp"
+            android:layout_height="65dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Goal"
+            android:id="@+id/textView6"
+            android:layout_below="@+id/goalsSpinner"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="left" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/goalsSpinner"
+            android:layout_marginTop="27dp"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:spinnerMode="dropdown"
+            android:contextClickable="false"
+            android:layout_gravity="right" />
+
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Calculate"
         android:id="@+id/button"
-        android:layout_below="@+id/textView6"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp" />
+        android:layout_marginBottom="143dp" />
 </RelativeLayout>

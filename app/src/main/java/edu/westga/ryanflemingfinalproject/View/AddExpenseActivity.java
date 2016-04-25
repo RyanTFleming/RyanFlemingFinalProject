@@ -8,9 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.westga.ryanflemingfinalproject.Controller.DBController;
 import edu.westga.ryanflemingfinalproject.R;
@@ -74,6 +79,7 @@ public class AddExpenseActivity extends AppCompatActivity {
             toast.show();
         }
     }
+
 
     /**
      * Private inner class that implements TextWatcher so the required fields must be filled out
