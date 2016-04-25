@@ -15,16 +15,19 @@ import android.widget.Toast;
 import edu.westga.ryanflemingfinalproject.Controller.DBController;
 import edu.westga.ryanflemingfinalproject.R;
 
-public class AddExpenseActivity extends AppCompatActivity {
+/**
+ * Activity that allows the user to add a goal to the database.
+ */
+public class AddGoalActivity extends AppCompatActivity {
 
-    DBController controller;
+    private DBController controller;
     private EditText nameEditText;
     private EditText valueEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_expense);
+        setContentView(R.layout.activity_add_goal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -39,38 +42,29 @@ public class AddExpenseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         this.controller = new DBController(this, DBController.DATABASE_NAME);
-        this.nameEditText = (EditText) findViewById(R.id.expenseNameTextEdit);
-        this.valueEditText = (EditText) findViewById(R.id.expenseValueTextEdit);
-
-
-        this.nameEditText.addTextChangedListener(new ExpenseTextWatch());
-        this.valueEditText.addTextChangedListener(new ExpenseTextWatch());
+        this.nameEditText = (EditText) this.findViewById(R.id.editTextGoalName);
+        this.nameEditText.addTextChangedListener(new GoalTextWatcher());
+        this.valueEditText = (EditText) this.findViewById(R.id.editTextGoalValue);
+        this.valueEditText.addTextChangedListener(new GoalTextWatcher());
     }
 
     /**
-     * Adds an expense to the database when the button is clicked
-     * @param v the buttons
+     * Adds a goal to the database
+     * @param v the add button.
      */
-    public void onAddExpenseButtonClick(View v) {
+    public void onAddGoalClick(View v) {
+        String goalName = this.nameEditText.getText().toString();
 
-
-        String name = this.nameEditText.getText().toString();
-        String valueString = this.valueEditText.getText().toString();
         try {
-            double value = Double.parseDouble(valueString);
-            boolean isSuccess = this.controller.insertExpense(name, value);
-            if (isSuccess) {
-                Toast toast = Toast.makeText(this, "Expense Successfully Added", Toast.LENGTH_LONG);
-                toast.show();
-                this.nameEditText.setText("");
-                this.valueEditText.setText("");
-            } else {
-                Toast toast = Toast.makeText(this, "Insert Failed", Toast.LENGTH_LONG);
+            double goalValue = Double.parseDouble(this.valueEditText.getText().toString());
+            boolean success = this.controller.insertGoal(goalName, goalValue);
+            if (success) {
+                Toast toast = Toast.makeText(this, "Goal successfully added", Toast.LENGTH_LONG);
                 toast.show();
             }
 
         } catch (NumberFormatException nfe) {
-            Toast toast = Toast.makeText(this, "Not a valid number", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, "Cost must be a valid number", Toast.LENGTH_LONG);
             toast.show();
         }
     }
@@ -79,18 +73,18 @@ public class AddExpenseActivity extends AppCompatActivity {
      * Private inner class that implements TextWatcher so the required fields must be filled out
      * or the button is disabled.
      */
-    private class ExpenseTextWatch implements TextWatcher {
+    private class GoalTextWatcher implements TextWatcher {
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+            // NOT USED
         }
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            EditText nameEditText = (EditText) AddExpenseActivity.this.findViewById(R.id.expenseNameTextEdit);
-            EditText valueEditText = (EditText) AddExpenseActivity.this.findViewById(R.id.expenseValueTextEdit);
-            Button addButton = (Button) AddExpenseActivity.this.findViewById(R.id.btnExpense);
+            EditText nameEditText = (EditText) AddGoalActivity.this.findViewById(R.id.editTextGoalName);
+            EditText valueEditText = (EditText) AddGoalActivity.this.findViewById(R.id.editTextGoalValue);
+            Button addButton = (Button) AddGoalActivity.this.findViewById(R.id.btnAddGoal);
             if (!nameEditText.getText().toString().equals("") && !valueEditText.getText().toString().equals("")) {
                 addButton.setEnabled(true);
             } else {
@@ -100,7 +94,7 @@ public class AddExpenseActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-
+            //NOT USED
         }
     }
 }

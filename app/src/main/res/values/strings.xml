@@ -9,4 +9,13 @@
     <string name="add_expense_name">Name</string>
     <string name="add_expense_title">Add A New Expense</string>
     <string name="add_string">Add</string>
+    <string name="title_activity_view_expenses">ViewExpensesActivity</string>
+    <string name="title_activity_calculator">CalculatorActivity</string>
+    <string name="title_activity_add_goal">AddGoalActivity</string>
+    <string name="string_add_goal_title">Add A New Goal</string>
+    <string name="add_goal_cost">Cost</string>
+    <string name="btn_submit">Submit</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

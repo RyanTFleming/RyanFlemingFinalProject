@@ -27,8 +27,9 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "expenseName";
     public static final String COLUMN_VALUE = "expenseValue";
 
-    public static final String TABLE_WAGE = "wage";
-    public static final String COLUMN_STARTDATE = "startTime";
+    public static final String TABLE_GOAL = "goals";
+    public static final String COLUMN_GOAL_NAME = "goalName";
+    public static final String COLUMN_GOAL_VALUE = "goalValue";
 
 
 
@@ -45,9 +46,10 @@ public class DBHandler extends SQLiteOpenHelper {
                     COLUMN_ID + " INTEGER PRIMARY KEY, " +
                     COLUMN_USERNAME + " TEXT)";
         String createWageTable = "CREATE TABLE " +
-                TABLE_WAGE + "(" +
+                TABLE_GOAL + "(" +
                     COLUMN_ID + " INTEGER PRIMARY KEY, " +
-                    COLUMN_STARTDATE + " TEXT)";
+                    COLUMN_GOAL_NAME + " TEXT, " +
+                    COLUMN_GOAL_VALUE + " REAL)";
         String createExpenseTable = "CREATE TABLE " +
                 TABLE_EXPENSE + "(" +
                     COLUMN_ID + " INTEGER PRIMARY KEY, " +
@@ -62,7 +64,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXPENSE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WAGE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_GOAL);
         this.onCreate(db);
     }
 
@@ -97,6 +99,24 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_VALUE, value);
         SQLiteDatabase db = this.getWritableDatabase();
         long rowID = db.insert(TABLE_EXPENSE, null, values);
+
+        if (rowID < 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean insertGoal(String name, double value) {
+        if (name == null) {
+            throw new IllegalArgumentException("You must have a way to identify the Goal");
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, name);
+        values.put(COLUMN_VALUE, value);
+        SQLiteDatabase db = this.getWritableDatabase();
+        long rowID = db.insert(TABLE_GOAL, null, values);
 
         if (rowID < 0) {
             return false;

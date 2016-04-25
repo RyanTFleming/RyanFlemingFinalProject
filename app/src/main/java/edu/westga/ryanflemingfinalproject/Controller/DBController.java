@@ -32,4 +32,10 @@ public class DBController {
         return this.handler.insertExpense(name, user);
     }
 
+    public boolean insertGoal(String name, double user) {
+        return this.handler.insertGoal(name, user);
+    }
+
+
+
 }

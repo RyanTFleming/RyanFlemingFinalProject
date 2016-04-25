@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -74,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
     private void loadScreen() {
 
         if (this.controller.getUserName() == null) {
+
+
+
             TextView addText = new TextView(this);
             addText.setGravity(Gravity.CENTER_HORIZONTAL);
             addText.setText("Enter Your Name: ");
@@ -142,12 +147,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         Button btnAddGoal = new Button(this);
         btnAddGoal.setText(R.string.button_goal);
+        btnAddGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startGoalActivity();
+            }
+        });
 
         Button btnCalculate = new Button(this);
         btnCalculate.setText(R.string.button_calculate);
+        btnCalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startCalculatorActivity();
+            }
+        });
 
         txvWelcome.setGravity(Gravity.CENTER_HORIZONTAL);
         txvWelcome.setPadding(0, 300, 0, 15);
@@ -159,8 +175,18 @@ public class MainActivity extends AppCompatActivity {
         this.mainActivityLayout.addView(btnCalculate);
     }
 
+    private void startGoalActivity() {
+        Intent intent = new Intent(this, AddGoalActivity.class);
+        this.startActivity(intent);
+    }
+
     private void startExpenseActivity() {
         Intent intent = new Intent(this, AddExpenseActivity.class);
+        this.startActivity(intent);
+    }
+
+    private void startCalculatorActivity() {
+        Intent intent = new Intent(this, CalculatorActivity.class);
         this.startActivity(intent);
     }
 }

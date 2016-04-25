@@ -6,7 +6,10 @@ import android.widget.Button;
 import edu.westga.ryanflemingfinalproject.View.AddExpenseActivity;
 
 /**
- * Created by RyanT on 4/21/2016.
+ * Test for the AddExpenseActivity.
+ *
+ * @author  Ryan T. Fleming
+ * @version 4/21/2016
  */
 public class AddExpenseActivityTest extends ActivityInstrumentationTestCase2<AddExpenseActivity> {
 

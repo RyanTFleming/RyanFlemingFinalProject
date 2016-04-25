@@ -27,6 +27,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.westga.ryanflemingfinalproject.View.MainActivity" />
         </activity>
+        <activity
+            android:name=".View.CalculatorActivity"
+            android:label="@string/title_activity_calculator"
+            android:parentActivityName=".View.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.westga.ryanflemingfinalproject.View.MainActivity" />
+        </activity>
+        <activity
+            android:name=".View.AddGoalActivity"
+            android:label="@string/title_activity_add_goal"
+            android:parentActivityName=".View.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.westga.ryanflemingfinalproject.View.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
