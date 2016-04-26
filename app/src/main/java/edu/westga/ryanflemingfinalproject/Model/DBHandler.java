@@ -92,6 +92,25 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     /**
+     * Gets the value of the goal that was passed.
+     * @param goalName - the goal to get the value of
+     * @return goalValue - the value of the goal
+     */
+    public double getGoalValue(String goalName) {
+        String query = "SELECT " + COLUMN_GOAL_VALUE + " FROM " + TABLE_GOAL +
+                " WHERE " + COLUMN_GOAL_NAME + "=" + "\"" + goalName + "\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        double goalValue = 0.0;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            goalValue = cursor.getDouble(0);
+            cursor.close();
+        }
+        return goalValue;
+    }
+
+    /**
      * Gets the list off all the goal names from the database and returns
      * them as a string array
      * @return goals - the arraylist of goals
@@ -111,6 +130,19 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         cursor.close();
         return goals;
+    }
+
+    public double getTotalExpenses() {
+        String query = "SELECT SUM(" + COLUMN_VALUE + ") FROM " + TABLE_EXPENSE;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        double total = 0.0;
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            total = cursor.getDouble(0);
+            cursor.close();
+        }
+        return total;
     }
     public boolean insertExpense(String name, double value) {
         if (name == null) {

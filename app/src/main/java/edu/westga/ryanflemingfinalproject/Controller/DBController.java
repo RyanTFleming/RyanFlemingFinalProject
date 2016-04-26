@@ -42,6 +42,14 @@ public class DBController {
         return this.handler.getGoals();
     }
 
+    public double getGoalValue(String goalName) {
+        return this.handler.getGoalValue(goalName);
+    }
+
+    public double getTotalExpenses() {
+        return this.handler.getTotalExpenses();
+    }
+
 
 
 

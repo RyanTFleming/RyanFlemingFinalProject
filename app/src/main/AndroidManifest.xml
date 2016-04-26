@@ -45,6 +45,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.westga.ryanflemingfinalproject.View.MainActivity" />
         </activity>
+        <activity
+            android:name=".View.ResultsActivity"
+            android:label="@string/title_activity_results"
+            android:parentActivityName=".View.CalculatorActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.westga.ryanflemingfinalproject.View.CalculatorActivity" />
+        </activity>
     </application>
 
 </manifest>

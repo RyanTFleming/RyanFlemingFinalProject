@@ -1,5 +1,6 @@
 package edu.westga.ryanflemingfinalproject.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,15 @@ import edu.westga.ryanflemingfinalproject.R;
 
 public class CalculatorActivity extends AppCompatActivity {
 
+    public static String WAGE_SELECTION = "edu.westga.ryanflemingfinalactivity.view.calculatoractivity.WAGE";
+    public static String HOURS_SELECTION = "edu.westga.ryanflemingfinalactivity.view.calculatoractivity.HOURS";
+    public static String GOAL_SELECTION = "edu.westga.ryanflemingfinalactivity.view.calculatoractivity.GOAL";
+
     private DBController controller;
+    private Spinner wageSpinner;
+    private Spinner goalSpinner;
+    private Spinner hoursSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +48,11 @@ public class CalculatorActivity extends AppCompatActivity {
         this.populateSpinners();
     }
 
+    public void onCalculateButtonClick(View v) {
+        this.startResultsActivity();
+    }
+
+
     private void populateSpinners() {
         List<String> wages = new ArrayList<String>();
         double value = 5.0;
@@ -46,8 +61,8 @@ public class CalculatorActivity extends AppCompatActivity {
             value += .25;
         }
         ArrayAdapter<String> wageAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, wages);
-        Spinner wageSpinner = (Spinner) this.findViewById(R.id.wageSpinner);
-        wageSpinner.setAdapter(wageAdapter);
+        this.wageSpinner = (Spinner) this.findViewById(R.id.wageSpinner);
+        this.wageSpinner.setAdapter(wageAdapter);
 
         List<String> hours = new ArrayList<String>();
         double hoursValue = 1.0;
@@ -56,12 +71,34 @@ public class CalculatorActivity extends AppCompatActivity {
             hoursValue += 1;
         }
         ArrayAdapter<String> hoursAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, hours);
-        Spinner hoursSpinner = (Spinner) this.findViewById(R.id.hoursSpinner);
-        hoursSpinner.setAdapter(hoursAdapter);
+        this.hoursSpinner = (Spinner) this.findViewById(R.id.hoursSpinner);
+        this.hoursSpinner.setAdapter(hoursAdapter);
 
         List<String> goals = this.controller.getGoals();
         ArrayAdapter<String> goalsAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, goals);
-        Spinner goalsSpinner = (Spinner) this.findViewById(R.id.goalsSpinner);
-        goalsSpinner.setAdapter(goalsAdapter);
+        this.goalSpinner = (Spinner) this.findViewById(R.id.goalsSpinner);
+        this.goalSpinner.setAdapter(goalsAdapter);
+    }
+
+    private void startResultsActivity() {
+        Intent intent = new Intent(this, ResultsActivity.class);
+        double wage = 0.0;
+        double hours = 0.0;
+
+        try {
+            wage = Double.parseDouble(this.wageSpinner.getSelectedItem().toString());
+            hours = Double.parseDouble(this.hoursSpinner.getSelectedItem().toString());
+        } catch (NumberFormatException nfe) {
+            Toast toast = Toast.makeText(this, "An error has occurred", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+
+        intent.putExtra(this.GOAL_SELECTION, this.goalSpinner.getSelectedItem().toString());
+        intent.putExtra(this.WAGE_SELECTION, wage);
+        intent.putExtra(this.HOURS_SELECTION, hours);
+        this.startActivity(intent);
+
+
     }
 }
