@@ -80,7 +80,7 @@ public class ViewExpensesActivity extends AppCompatActivity {
                     expenseArrayAdapter.notifyDataSetChanged();
                     String value = ViewExpensesActivity.this.expenseValues.get(0);
 
-
+                    //TODO Try a new adapter
 
                     Toast toast = Toast.makeText(ViewExpensesActivity.this,value , Toast.LENGTH_LONG);
                     toast.show();

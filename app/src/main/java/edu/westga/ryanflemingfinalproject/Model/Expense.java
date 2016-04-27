@@ -38,11 +38,4 @@ public class Expense {
     public double getValue() {
         return this.expenseValue;
     }
-
-    @Override
-    public String toString() {
-        return String.format("%10s:                     %-10.2f", this.expenseName, this.expenseValue);
-    }
-
-
 }
