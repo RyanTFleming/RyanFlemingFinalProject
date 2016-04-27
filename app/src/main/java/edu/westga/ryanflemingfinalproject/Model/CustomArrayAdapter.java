@@ -43,9 +43,4 @@ public class CustomArrayAdapter extends ArrayAdapter<String> {
         txtValue.setWidth(metrics.widthPixels / 2);
         return rowView;
     }
-
-    public void updateValues(ArrayList<String> value) {
-        this.value = value;
-
-    }
 }

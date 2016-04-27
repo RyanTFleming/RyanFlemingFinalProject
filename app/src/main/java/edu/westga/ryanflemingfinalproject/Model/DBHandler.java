@@ -215,4 +215,36 @@ public class DBHandler extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    public ArrayList<Goal> getAllGoals() {
+        String query = "SELECT * FROM " + TABLE_GOAL;
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        int index;
+        ArrayList<Goal> goalList = new ArrayList<>();
+        Goal goal;
+        if (cursor!= null) {
+            cursor.moveToFirst();
+            for (index = 0; index < cursor.getCount(); index++) {
+                String goalName = cursor.getString(1);
+                double expenseValue = cursor.getDouble(2);
+                goal = new Goal(goalName, expenseValue);
+                goalList.add(goal);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return goalList;
+    }
+
+    public boolean deleteGoal(String goalName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_GOAL, COLUMN_GOAL_NAME + "=" + "\"" + goalName + "\"", null) > 0;
+    }
+
+    public boolean deleteAllGoals() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_GOAL, "1", null) > 0;
+    }
+
 }

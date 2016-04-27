@@ -22,7 +22,7 @@ public class ViewExpensesActivity extends AppCompatActivity {
     private ArrayList<Expense> expenseList;
     private ArrayList<String> expenseNames;
     private ArrayList<String> expenseValues;
-
+    private CustomArrayAdapter expenseArrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,7 @@ public class ViewExpensesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "1. Press and hold to delete Item, or\n2. Hit toggle to activate 'Delete All' button", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -47,7 +47,7 @@ public class ViewExpensesActivity extends AppCompatActivity {
         this.expenseValues = new ArrayList<>();
         this.createArrayLists();
         final ListView expenseListView = (ListView) this.findViewById(R.id.listViewExpenses);
-        final CustomArrayAdapter expenseArrayAdapter = new CustomArrayAdapter(this, expenseNames, this.expenseValues);
+        this.expenseArrayAdapter = new CustomArrayAdapter(this, expenseNames, this.expenseValues);
         expenseListView.setAdapter(expenseArrayAdapter);
         expenseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,36 +60,32 @@ public class ViewExpensesActivity extends AppCompatActivity {
         expenseListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                String deleteName = expenseNames.get(position);
-//                boolean isDeleted = ViewExpensesActivity.this.controller.deleteExpense(expenseNames.get(position));
-                boolean isDeleted = true;
+                String deletedName = expenseNames.get(position);
+                boolean isDeleted = ViewExpensesActivity.this.controller.deleteExpense(expenseNames.get(position));
+
                 if (isDeleted) {
                     expenseList = controller.getAllExpenses();
-                    ViewExpensesActivity.this.createArrayLists();
                     expenseArrayAdapter.clear();
-                    expenseArrayAdapter.addAll(ViewExpensesActivity.this.expenseNames);
-                    expenseArrayAdapter.updateValues(ViewExpensesActivity.this.expenseValues);
-                    expenseArrayAdapter.notifyDataSetChanged();
-                    String value = ViewExpensesActivity.this.expenseValues.get(0);
-
-                    //TODO Try a new adapter
-
-                    Toast toast = Toast.makeText(ViewExpensesActivity.this,value , Toast.LENGTH_LONG);
+                    ViewExpensesActivity.this.createArrayLists();
+                    expenseArrayAdapter = new CustomArrayAdapter(ViewExpensesActivity.this, expenseNames, expenseValues);
+                    expenseListView.setAdapter(expenseArrayAdapter);
+                    Toast toast = Toast.makeText(ViewExpensesActivity.this, "Successfully Deleted " + deletedName , Toast.LENGTH_LONG);
                     toast.show();
                 }
                 return isDeleted;
             }
         });
+
+
     }
 
     private void createArrayLists() {
-        int index = 0;
+
         for (Expense expense : this.expenseList) {
             String name = expense.getName();
             String value = String.format("%.2f", expense.getValue());
             this.expenseNames.add(name);
             this.expenseValues.add(value);
-            index++;
         }
     }
 }

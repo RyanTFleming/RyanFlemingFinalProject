@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_list_goals) {
+            this.startListGoalsActivity();
         }
         if (id == R.id.action_list_expenses) {
             this.startListExpensesActivity();
@@ -192,6 +192,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void startListExpensesActivity() {
         Intent intent = new Intent(this, ViewExpensesActivity.class);
+        this.startActivity(intent);
+    }
+
+    private void startListGoalsActivity() {
+        Intent intent = new Intent(this, ViewGoalActivity.class);
         this.startActivity(intent);
     }
 }

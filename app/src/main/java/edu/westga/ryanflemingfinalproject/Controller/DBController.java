@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.westga.ryanflemingfinalproject.Model.DBHandler;
 import edu.westga.ryanflemingfinalproject.Model.Expense;
+import edu.westga.ryanflemingfinalproject.Model.Goal;
 
 /**
  * Controller for accessing the DAL
@@ -49,6 +50,8 @@ public class DBController {
         return this.handler.getGoalValue(goalName);
     }
 
+    public boolean deleteGoal(String goalName) {return this.handler.deleteGoal(goalName);}
+
     public double getTotalExpenses() {
         return this.handler.getTotalExpenses();
     }
@@ -69,7 +72,9 @@ public class DBController {
         return this.handler.deleteUser();
     }
 
+    public ArrayList<Goal> getAllGoals() {return this.handler.getAllGoals();}
 
+    public boolean deleteAllGoals() {return this.handler.deleteAllGoals();}
 
 
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.westga.ryanflemingfinalproject.Controller.DBController;
 import edu.westga.ryanflemingfinalproject.Model.Expense;
+import edu.westga.ryanflemingfinalproject.Model.Goal;
 import edu.westga.ryanflemingfinalproject.View.MainActivity;
 
 /**
@@ -81,7 +82,7 @@ public class DBControllerTest extends ActivityInstrumentationTestCase2<MainActiv
     /**
      * Test to make sure the activity deletes the named expense.
      */
-    public void testShouldDeleteOnlyTestNamed() {
+    public void testShouldDeleteOnlyExpenseNamed() {
         MainActivity activity = this.getActivity();
         this.controller = new DBController(activity, DBController.TEST_DATABASE);
         this.controller.insertExpense("Ex1", 10.0);
@@ -105,5 +106,52 @@ public class DBControllerTest extends ActivityInstrumentationTestCase2<MainActiv
         this.controller.insertExpense("Ex2", 15.0);
         this.controller.insertExpense("Ex3", 5.0);
         assertEquals(30.00, this.controller.getTotalExpenses(), .00);
+    }
+
+    /**
+     * Test to make sure the activity deletes the named goal.
+     */
+    public void testShouldDeleteAllGoals() {
+        MainActivity activity = this.getActivity();
+        this.controller = new DBController(activity, DBController.TEST_DATABASE);
+        this.controller.insertGoal("goal1", 10.0);
+        this.controller.insertGoal("goal2", 10.0);
+        this.controller.insertGoal("Goal3", 10.0);
+        this.controller.deleteAllGoals();
+        ArrayList<Goal> testList = this.controller.getAllGoals();
+        assertEquals(0, testList.size());
+    }
+
+    /**
+     * Test to make sure the activity deletes the named goal.
+     */
+    public void testShouldDeleteOnlyGoalNamed() {
+        MainActivity activity = this.getActivity();
+        this.controller = new DBController(activity, DBController.TEST_DATABASE);
+        this.controller.deleteAllGoals();
+        this.controller.insertGoal("goal1", 10.0);
+        this.controller.insertGoal("goal2", 10.0);
+        this.controller.insertGoal("Goal3", 10.0);
+        this.controller.deleteGoal("goal2");
+        ArrayList<Goal> testList = this.controller.getAllGoals();
+        assertEquals(2, testList.size());
+        assertEquals("goal1", testList.get(0).getName());
+        assertEquals("Goal3", testList.get(1).getName());
+    }
+
+    /**
+     * Test to make sure the activity adds goals to DB.
+     */
+    public void testShouldAddGoalsToDB() {
+        MainActivity activity = this.getActivity();
+        this.controller = new DBController(activity, DBController.TEST_DATABASE);
+        this.controller.deleteAllGoals();
+        this.controller.insertGoal("goal1", 10.0);
+        this.controller.insertGoal("goal2", 10.0);
+        this.controller.insertGoal("Goal3", 10.0);
+        ArrayList<Goal> testList = this.controller.getAllGoals();
+        assertEquals("goal1", testList.get(0).getName());
+        assertEquals("goal2", testList.get(1).getName());
+        assertEquals("Goal3", testList.get(2).getName());
     }
 }

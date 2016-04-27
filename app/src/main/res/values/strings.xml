@@ -23,4 +23,6 @@
     <string name="delete_string">Delete?</string>
     <string name="yes_string">Yes</string>
     <string name="no_string">No</string>
+    <string name="title_activity_view_goal">ViewGoalActivity</string>
+    <string name="action_goals">List Goals</string>
 </resources>
