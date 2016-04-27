@@ -76,9 +76,6 @@ public class MainActivity extends AppCompatActivity {
     private void loadScreen() {
 
         if (this.controller.getUserName() == null) {
-
-
-
             TextView addText = new TextView(this);
             addText.setGravity(Gravity.CENTER_HORIZONTAL);
             addText.setText("Enter Your Name: ");
@@ -136,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void makeUI() {
         TextView txvWelcome = new TextView(this);
-        txvWelcome.setText("Welcome, " + this.controller.getUserName());
+        txvWelcome.setId(R.id.welcome_text_view);
+        txvWelcome.setText("Welcome\n\n" + this.controller.getUserName());
         Button btnAddExpense = new Button(this);
         btnAddExpense.setText(R.string.button_expense);
         btnAddExpense.setId(R.id.btnAddExpense);
@@ -166,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         txvWelcome.setGravity(Gravity.CENTER_HORIZONTAL);
-        txvWelcome.setPadding(0, 300, 0, 15);
-        txvWelcome.setTextSize(30);
+        txvWelcome.setPadding(0, 50, 0, 200);
+        txvWelcome.setTextSize(40);
         txvWelcome.setTextColor(Color.BLACK);
         this.mainActivityLayout.addView(txvWelcome);
         this.mainActivityLayout.addView(btnAddExpense);

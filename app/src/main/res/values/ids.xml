@@ -4,4 +4,5 @@
     <item name="add_text_view" type="id">addText</item>
     <item name="add_user_text_edit" type="id">addUserTextEdit</item>
     <item name="btnAddExpense" type="id">button_add_expense</item>
+    <item name="welcome_text_view" type="id">txvWelcomeID</item>
 </resources>
