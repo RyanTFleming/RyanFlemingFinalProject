@@ -91,6 +91,11 @@ public class DBHandler extends SQLiteOpenHelper {
         return userName;
     }
 
+    public boolean deleteUser() {
+        SQLiteDatabase db = getWritableDatabase();
+        return db.delete(TABLE_USER, "1", null) > 0;
+    }
+
     /**
      * Gets the value of the goal that was passed.
      * @param goalName - the goal to get the value of
@@ -158,6 +163,10 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.delete(TABLE_EXPENSE, COLUMN_NAME + "=" + "\"" + expenseName + "\"", null) > 0;
     }
 
+    public boolean deleteAllExpenses() {
+        SQLiteDatabase db = getWritableDatabase();
+        return db.delete(TABLE_EXPENSE, "1", null) > 0;
+    }
 
     public double getTotalExpenses() {
         String query = "SELECT SUM(" + COLUMN_VALUE + ") FROM " + TABLE_EXPENSE;
