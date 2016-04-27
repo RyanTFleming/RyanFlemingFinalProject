@@ -11,12 +11,22 @@ public class GoalCalculator {
      */
     private final double AVERAGE_WEEKS_PER_MONTH = 4.33;
 
-    public GoalCalculator() {
+    private double hoursWorkedPerWeek;
+    private double hourlyWage;
 
+
+    public GoalCalculator(double wage, double hoursPerWeek) {
+        this.hourlyWage = wage;
+        this.hoursWorkedPerWeek = hoursPerWeek;
     }
 
-    public double hoursWorkedPerMonth(double hoursPerWeek) {
-        return hoursPerWeek * AVERAGE_WEEKS_PER_MONTH;
+    public double hoursWorkedPerMonth() {
+        return this.hoursWorkedPerWeek * AVERAGE_WEEKS_PER_MONTH;
     }
+
+    public double monthlyEarning() {
+        return this.hourlyWage * this.hoursWorkedPerMonth();
+    }
+
 }
 

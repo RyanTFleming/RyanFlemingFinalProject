@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.action_list_expenses) {
+            this.startListExpensesActivity();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -184,6 +187,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void startCalculatorActivity() {
         Intent intent = new Intent(this, CalculatorActivity.class);
+        this.startActivity(intent);
+    }
+
+    private void startListExpensesActivity() {
+        Intent intent = new Intent(this, ViewExpensesActivity.class);
         this.startActivity(intent);
     }
 }

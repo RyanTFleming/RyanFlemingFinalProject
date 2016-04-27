@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 
 import edu.westga.ryanflemingfinalproject.Model.DBHandler;
+import edu.westga.ryanflemingfinalproject.Model.Expense;
 
 /**
  * Controller for accessing the DAL
@@ -48,6 +49,14 @@ public class DBController {
 
     public double getTotalExpenses() {
         return this.handler.getTotalExpenses();
+    }
+
+    public ArrayList<Expense> getAllExpenses() {
+        return this.handler.getAllExpenses();
+    }
+
+    public boolean deleteExpense(String expenseName) {
+        return this.handler.deleteExpense(expenseName);
     }
 
 

@@ -132,6 +132,33 @@ public class DBHandler extends SQLiteOpenHelper {
         return goals;
     }
 
+    public ArrayList<Expense> getAllExpenses() {
+        String query = "SELECT * FROM " + TABLE_EXPENSE;
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        int index;
+        ArrayList<Expense> expenseList = new ArrayList<>();
+        Expense expense;
+        if (cursor!= null) {
+            cursor.moveToFirst();
+            for (index = 0; index < cursor.getCount(); index++) {
+                String expenseName = cursor.getString(1);
+                double expenseValue = cursor.getDouble(2);
+                expense = new Expense(expenseName, expenseValue);
+                expenseList.add(expense);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return expenseList;
+    }
+
+    public boolean deleteExpense(String expenseName) {
+        SQLiteDatabase db = getWritableDatabase();
+        return db.delete(TABLE_EXPENSE, COLUMN_NAME + "=" + "\"" + expenseName + "\"", null) > 0;
+    }
+
+
     public double getTotalExpenses() {
         String query = "SELECT SUM(" + COLUMN_VALUE + ") FROM " + TABLE_EXPENSE;
         SQLiteDatabase db = this.getWritableDatabase();

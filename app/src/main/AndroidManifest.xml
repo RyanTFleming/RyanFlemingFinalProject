@@ -54,6 +54,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.westga.ryanflemingfinalproject.View.CalculatorActivity" />
         </activity>
+        <activity
+            android:name=".View.ViewExpensesActivity"
+            android:label="@string/title_activity_view_expenses"
+            android:parentActivityName=".View.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.westga.ryanflemingfinalproject.View.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

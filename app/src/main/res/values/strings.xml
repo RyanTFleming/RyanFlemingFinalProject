@@ -15,8 +15,12 @@
     <string name="string_add_goal_title">Add A New Goal</string>
     <string name="add_goal_cost">Cost</string>
     <string name="btn_submit">Submit</string>
+    <string name="action_list_expenses">List Expenses</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_results">ResultsActivity</string>
+    <string name="delete_string">Delete?</string>
+    <string name="yes_string">Yes</string>
+    <string name="no_string">No</string>
 </resources>

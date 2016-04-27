@@ -59,5 +59,6 @@ public class ResultsActivity extends AppCompatActivity {
         goalView.setText(this.goal);
         goalValueView.setText(String.format("$%.2f", goalValue));
         totalExpenseView.setText(String.format("Monthly Expenses:$%.2f", expenseTotal));
+
     }
 }
