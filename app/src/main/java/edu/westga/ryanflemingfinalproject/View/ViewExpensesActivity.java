@@ -118,6 +118,8 @@ public class ViewExpensesActivity extends AppCompatActivity {
                     toast.show();
                     return true;
                 } else {
+                    Toast toast = Toast.makeText(ViewExpensesActivity.this, "Go Expenses To Delete" , Toast.LENGTH_LONG);
+                    toast.show();
                     return false;
                 }
             }

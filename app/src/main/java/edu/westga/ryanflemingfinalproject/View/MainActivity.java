@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Add your income, expenses, and goals\nHope you earn enough to one day achieve them", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
