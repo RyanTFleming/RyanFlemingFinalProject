@@ -37,7 +37,7 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.controller = new DBController(this, DBController.DATABASE_NAME);
 
 
@@ -57,10 +57,10 @@ public class ResultsActivity extends AppCompatActivity {
         TextView totalExpenseView = (TextView) this.findViewById(R.id.textViewExpenseTotal);
 
 
-        wageView.setText(String.format("Wage:                                 $%.2f", this.wage));
-        hoursView.setText(String.format("Hours                                   %.2f", this.hours));
+        wageView.setText(String.format("$%.2f", this.wage));
+        hoursView.setText(String.format("%.2f", this.hours));
         goalValueView.setText(String.format("%s:    $%.2f", this.goal, this.goalValue));
-        totalExpenseView.setText(String.format("Monthly Expenses:     $%.2f", this.totalExpenses));
+        totalExpenseView.setText(String.format("$%.2f", this.totalExpenses));
 
     }
 

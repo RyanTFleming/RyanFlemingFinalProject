@@ -62,7 +62,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Work Stats"
+            android:text="@string/work_stats"
             android:id="@+id/textView11"
             android:layout_gravity="left|top"
             android:paddingLeft="10dp"
@@ -71,43 +71,85 @@
             android:textColor="#000000" />
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
             android:id="@+id/textViewWage"
             android:gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:layout_below="@+id/textView10"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_gravity="center_horizontal|top" />
+            android:layout_gravity="right|top"
+            android:layout_marginRight="10dp" />
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textViewExpenseTotal"
-            android:gravity="center_horizontal"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="center_horizontal|top"
-            android:layout_marginTop="100dp" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
             android:id="@+id/textViewHours"
             android:gravity="center_horizontal"
             android:layout_below="@+id/frameLayout"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_gravity="center_horizontal|top"
-            android:layout_marginTop="70dp" />
+            android:layout_gravity="right|top"
+            android:layout_marginTop="70dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textViewExpenseTotal"
+            android:gravity="center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="right|top"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/wage_string"
+            android:id="@+id/textView17"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/textView10"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="left|top"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/hours_week_string"
+            android:id="@+id/textView18"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/frameLayout"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/total_expenses_string"
+            android:id="@+id/textView19"
+            android:gravity="center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="10dp" />
 
     </FrameLayout>
 
@@ -123,7 +165,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Results / Month"
+            android:text="@string/results_month_string"
             android:id="@+id/textView12"
             android:layout_gravity="left|top"
             android:paddingLeft="10dp"
@@ -135,7 +177,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Total Income"
+            android:text="@string/total_income_string"
             android:id="@+id/textView14"
             android:layout_gravity="left|top"
             android:layout_marginTop="50dp"
@@ -145,7 +187,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Net Income"
+            android:text="@string/net_income_string"
             android:id="@+id/textView13"
             android:layout_gravity="left|top"
             android:layout_marginTop="80dp"
@@ -155,7 +197,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Net Earned / Hr"
+            android:text="@string/net_earned_hr_string"
             android:id="@+id/textView15"
             android:layout_gravity="left|top"
             android:layout_marginTop="110dp"
@@ -165,7 +207,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Hrs. To Goal"
+            android:text="@string/hrs_to_goal_string"
             android:id="@+id/textView16"
             android:layout_gravity="left|top"
             android:layout_marginTop="140dp"

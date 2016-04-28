@@ -26,4 +26,15 @@
     <string name="title_activity_view_goal">ViewGoalActivity</string>
     <string name="action_goals">List Goals</string>
     <string name="goal_string">Goal</string>
+    <string name="work_stats">Work Stats</string>
+    <string name="wage_string">Wage</string>
+    <string name="hours_week_string">Hours/Week</string>
+    <string name="total_expenses_string">Total Expenses</string>
+    <string name="total_income_string">Total Income</string>
+    <string name="net_income_string">Net Income</string>
+    <string name="net_earned_hr_string">Net Earned / Hr</string>
+    <string name="hrs_to_goal_string">Hrs. To Goal</string>
+    <string name="results_month_string">Results / Month</string>
+    <string name="hourly_wage_string">Hourly Wage</string>
+    <string name="calculate_string">Calculate</string>
 </resources>
