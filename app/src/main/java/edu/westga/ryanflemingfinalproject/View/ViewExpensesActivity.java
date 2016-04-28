@@ -5,9 +5,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 import java.util.ArrayList;
 
@@ -73,12 +76,52 @@ public class ViewExpensesActivity extends AppCompatActivity {
                     toast.show();
                 }
                 return isDeleted;
-
-
             }
         });
 
+        final Button deleteButton = (Button) this.findViewById(R.id.buttonDeleteAllExpenses);
+        final Switch deleteToggle = (Switch) this.findViewById(R.id.deleteExpensesToggle);
+        deleteToggle.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (!deleteToggle.isChecked()) {
+                    deleteToggle.setChecked(true);
+                    deleteButton.setEnabled(false);
+                } else {
+                    deleteToggle.setChecked(false);
+                    deleteButton.setEnabled(true);
+                }
 
+                return false;
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(ViewExpensesActivity.this, "Hold to Delete All Expenses", Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+
+        deleteButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                boolean success = ViewExpensesActivity.this.controller.deleteAllExpenses();
+                if (success) {
+                    expenseList = controller.getAllExpenses();
+                    expenseArrayAdapter.clear();
+                    ViewExpensesActivity.this.createArrayLists();
+                    expenseArrayAdapter = new CustomArrayAdapter(ViewExpensesActivity.this, expenseNames, expenseValues);
+                    expenseListView.setAdapter(expenseArrayAdapter);
+                    Toast toast = Toast.makeText(ViewExpensesActivity.this, "Successfully Deleted All Expenses" , Toast.LENGTH_LONG);
+                    toast.show();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
     }
 
     private void createArrayLists() {
