@@ -73,6 +73,8 @@ public class ViewExpensesActivity extends AppCompatActivity {
                     toast.show();
                 }
                 return isDeleted;
+
+
             }
         });
 

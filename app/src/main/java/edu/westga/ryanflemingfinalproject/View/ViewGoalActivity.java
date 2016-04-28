@@ -5,10 +5,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
@@ -77,8 +81,49 @@ public class ViewGoalActivity extends AppCompatActivity {
                 return isDeleted;
             }
         });
+        final Button deleteButton = (Button) this.findViewById(R.id.buttonDeleteAllGoals);
+        final Switch deleteToggle = (Switch) this.findViewById(R.id.deleteGoalToggle);
+        deleteToggle.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (!deleteToggle.isChecked()) {
+                    deleteToggle.setChecked(true);
+                    deleteButton.setEnabled(false);
+                } else {
+                    deleteToggle.setChecked(false);
+                    deleteButton.setEnabled(true);
+                }
 
+                return false;
+            }
+        });
 
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(ViewGoalActivity.this, "Hold to Delete All Goals", Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+
+        deleteButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                boolean success = ViewGoalActivity.this.controller.deleteAllGoals();
+                if (success) {
+                    goalList = controller.getAllGoals();
+                    goalArrayAdapter.clear();
+                    ViewGoalActivity.this.createArrayLists();
+                    goalArrayAdapter = new CustomArrayAdapter(ViewGoalActivity.this, goalNames, goalValues);
+                    goalListView.setAdapter(goalArrayAdapter);
+                    Toast toast = Toast.makeText(ViewGoalActivity.this, "Successfully Deleted All Goals" , Toast.LENGTH_LONG);
+                    toast.show();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
     }
 
     private void createArrayLists() {

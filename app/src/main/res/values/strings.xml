@@ -37,4 +37,5 @@
     <string name="results_month_string">Results / Month</string>
     <string name="hourly_wage_string">Hourly Wage</string>
     <string name="calculate_string">Calculate</string>
+    <string name="delete_all_string">Delete All</string>
 </resources>

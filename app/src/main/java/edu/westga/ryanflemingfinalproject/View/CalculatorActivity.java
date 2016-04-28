@@ -49,7 +49,14 @@ public class CalculatorActivity extends AppCompatActivity {
     }
 
     public void onCalculateButtonClick(View v) {
-        this.startResultsActivity();
+        if (this.goalSpinner.getChildCount() <= 0) {
+            Toast toast = Toast.makeText(this, "You must add at least one Goal", Toast.LENGTH_LONG);
+            toast.show();
+        } else {
+            this.startResultsActivity();
+        }
+
+
     }
 
 

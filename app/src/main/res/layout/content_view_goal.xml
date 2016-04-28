@@ -23,18 +23,19 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button3"
+        android:text="@string/delete_all_string"
+        android:id="@+id/buttonDeleteAllGoals"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="104dp" />
+        android:layout_marginBottom="104dp"
+        android:enabled="false" />
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/switch2"
+        android:id="@+id/deleteGoalToggle"
         android:layout_marginTop="56dp"
         android:checked="false"
-        android:layout_alignTop="@+id/button3"
+        android:layout_alignTop="@+id/buttonDeleteAllGoals"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
