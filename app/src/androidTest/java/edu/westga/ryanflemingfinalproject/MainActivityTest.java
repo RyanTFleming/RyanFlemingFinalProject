@@ -41,9 +41,28 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
      * Test to make sure button started disableds
      */
     public void testInitialLoadScreenSubmitButtonDisabled() {
-        MainActivity activity = getActivity();
-        Button button = (Button) activity.findViewById(R.id.button_submit_user_name);
-        assertFalse(button.isEnabled());
+        final MainActivity activity = getActivity();
+        this.controller = new DBController(activity, DBController.DATABASE_NAME);
+        String userName = this.controller.getUserName();
+        if (userName != null) {
+            this.controller.deleteUsers();
+            this.getInstrumentation().runOnMainSync(new Runnable() {
+                @Override
+                public void run() {
+                    activity.recreate();
+                }
+            });
+            Button button = (Button) activity.findViewById(R.id.button_submit_user_name);
+            assertFalse(button.isEnabled());
+        } else {
+            Button button = (Button) activity.findViewById(R.id.button_submit_user_name);
+            assertFalse(button.isEnabled());
+
+        }
+
+        if (userName != null) {
+            this.controller.insertUserName(userName);
+        }
     }
 
     /**

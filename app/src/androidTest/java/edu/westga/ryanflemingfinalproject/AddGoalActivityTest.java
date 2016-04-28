@@ -1,5 +1,7 @@
 package edu.westga.ryanflemingfinalproject;
 
+import android.os.SystemClock;
+import android.provider.Settings;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 import android.widget.EditText;
@@ -92,8 +94,10 @@ public class AddGoalActivityTest extends ActivityInstrumentationTestCase2<AddGoa
                 nameEditText.requestFocus();
             }
         });
+        SystemClock.sleep(500);
         getInstrumentation().sendStringSync("Test");
         getInstrumentation().waitForIdleSync();
+        SystemClock.sleep(500);
 
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
@@ -101,8 +105,10 @@ public class AddGoalActivityTest extends ActivityInstrumentationTestCase2<AddGoa
                 valueEditText.requestFocus();
             }
         });
+        SystemClock.sleep(500);
         getInstrumentation().sendStringSync("10");
         getInstrumentation().waitForIdleSync();
+        SystemClock.sleep(500);
 
         assertTrue(button.isEnabled());
     }
